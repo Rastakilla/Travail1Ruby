@@ -10,7 +10,93 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131215053) do
+ActiveRecord::Schema.define(version: 20180212161856) do
+
+  create_table "Adresses", force: :cascade do |t|
+    t.string "NumeroCivique"
+    t.string "Rue"
+    t.string "CodePostal"
+    t.string "Ville"
+    t.string "Province"
+  end
+
+  create_table "Clients", force: :cascade do |t|
+    t.string "Prenom"
+    t.string "Nom"
+    t.datetime "DateNaissance"
+    t.string "NAS"
+    t.integer "Adresses_id"
+    t.integer "NombreEnfants"
+    t.integer "CompteTaxesProprietaire"
+  end
+
+  create_table "Clients_EtatsCivils", force: :cascade do |t|
+    t.integer "Clients_id_id"
+    t.integer "EtatCivil_id_id"
+    t.datetime "DateDebut"
+    t.datetime "DateFin"
+    t.index ["Clients_id_id"], name: "index_Clients_EtatsCivils_on_Clients_id_id"
+    t.index ["EtatCivil_id_id"], name: "index_Clients_EtatsCivils_on_EtatCivil_id_id"
+  end
+
+  create_table "Clients_Has_Conjours", force: :cascade do |t|
+    t.integer "Clients_id_id"
+    t.integer "Clients_Conjoint_id_id"
+    t.datetime "DateDebut"
+    t.datetime "DateFin"
+    t.index ["Clients_Conjoint_id_id"], name: "index_Clients_Has_Conjours_on_Clients_Conjoint_id_id"
+    t.index ["Clients_id_id"], name: "index_Clients_Has_Conjours_on_Clients_id_id"
+  end
+
+  create_table "Clients_Has_Employeurs", force: :cascade do |t|
+    t.integer "Clients_id_id"
+    t.integer "Employeurs_id_id"
+    t.datetime "DateDebut"
+    t.datetime "DateFin"
+    t.index ["Clients_id_id"], name: "index_Clients_Has_Employeurs_on_Clients_id_id"
+    t.index ["Employeurs_id_id"], name: "index_Clients_Has_Employeurs_on_Employeurs_id_id"
+  end
+
+  create_table "Clients_Has_Enfants", force: :cascade do |t|
+    t.integer "Enfants_id_id"
+    t.integer "Clients_id_id"
+    t.integer "Lien"
+    t.index ["Clients_id_id"], name: "index_Clients_Has_Enfants_on_Clients_id_id"
+    t.index ["Enfants_id_id"], name: "index_Clients_Has_Enfants_on_Enfants_id_id"
+  end
+
+  create_table "Employeurs", force: :cascade do |t|
+    t.string "Nom"
+    t.integer "Adresses_id_id"
+    t.index ["Adresses_id_id"], name: "index_Employeurs_on_Adresses_id_id"
+  end
+
+  create_table "Enfants", force: :cascade do |t|
+    t.string "Nom"
+    t.string "Prenom"
+    t.datetime "Datenaissance"
+  end
+
+  create_table "EtatsCivils", force: :cascade do |t|
+    t.string "type"
+  end
+
+  create_table "Etudes", force: :cascade do |t|
+    t.string "SecteurEtudes"
+    t.string "Niveau"
+    t.datetime "DateDebut"
+    t.datetime "DateCompletion"
+    t.integer "Clients_id_id"
+    t.integer "Institutions_id_id"
+    t.index ["Clients_id_id"], name: "index_Etudes_on_Clients_id_id"
+    t.index ["Institutions_id_id"], name: "index_Etudes_on_Institutions_id_id"
+  end
+
+  create_table "Institutions", force: :cascade do |t|
+    t.string "Nom"
+    t.integer "Adresses_id_id"
+    t.index ["Adresses_id_id"], name: "index_Institutions_on_Adresses_id_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "name"
