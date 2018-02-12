@@ -54,10 +54,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # du site officiel du gem d'intégration de bootstrap 4 avec rails (https://github.com/twbs/bootstrap-rubygem)
 
-gem 'bootstrap', '~> 4.0.0'
-
-gem 'jquery-rails'
-
 
 # icons for bootstrap
 
@@ -73,3 +69,13 @@ gem 'devise', '>= 4.3'
 gem 'devise-i18n'
 
 gem 'devise-bootstrap-views', :git => 'https://github.com/hisea/devise-bootstrap-views.git', :branch => 'bootstrap4'
+
+gem 'turbolinks', '~> 5'
+
+gem 'cocoon' #, '~> 1.2.11'
+
+gem 'simple_form' #, '~> 3.1.0'
+
+gem 'bootstrap', '~> 4.0.0'
+
+gem 'jquery-rails'
