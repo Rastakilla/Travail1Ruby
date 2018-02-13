@@ -1,6 +1,6 @@
-class ClientsEtatsCivils < ActiveRecord::Migration[5.1]
+class CreateClientsEtatsCivils < ActiveRecord::Migration[5.1]
   def change
-    create_table :Clients_EtatsCivils do |t|
+    create_table :clients_etats_civils do |t|
       t.references :Clients_id, foreign_key: true
       t.references :EtatCivil_id, foreign_key: true
       t.datetime :DateDebut
