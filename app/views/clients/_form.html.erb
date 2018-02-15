@@ -1,0 +1,80 @@
+<%= simple_form_for Client.new do |f| %>
+  <%= f.input :Nom, :hint => '' %>
+  <%= f.input :Prenom, :hint => '' %>
+  <%= f.input :DateNaissance, :hint => '' %>
+  <%= f.input :NAS, :hint => '' %>
+  <%= f.input :Adresses_id, :hint => '' %>
+  <%= f.input :NombreEnfants, :hint => '' %>
+  <%= f.input :CompteTaxesProprietaire, :hint => '' %>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <%= link_to 'Adresse', '#adresses', data: {toggle: 'tab'} %>
+    </li>
+    <div class="tab-pane" id="adresses" role="tabpanel">
+      <%= f.simple_fields_for :adress do |adress|%>
+      <%= render 'adress_field', :f => adress %>
+      <% end %>
+      <div class="links">
+
+      </div>
+    </div>
+    <li class="">
+      <%= link_to 'Enfant', '#enfants', data: {toggle: 'tab'} %>
+    </li>
+    <div class="tab-pane" id="enfants" role="tabpanel">
+      <%= f.simple_fields_for :enfant do |enfant|%>
+      <%= render 'enfant_field', :f => enfant %>
+      <% end %>
+      <div class="links">
+
+      </div>
+
+      <li class="">
+        <%= link_to 'Etude', '#etudes', data: {toggle: 'tab'} %>
+      </li>
+      <div class="tab-pane" id="etudes" role="tabpanel">
+        <%= f.simple_fields_for :etude do |etude|%>
+        <%= render 'etude_field', :f => etude %>
+        <% end %>
+        <div class="links">
+
+        </div>
+
+        <li class="">
+          <%= link_to 'Etat Civil', '#etats_civils', data: {toggle: 'tab'} %>
+        </li>
+        <div class="tab-pane" id="etats_civils" role="tabpanel">
+          <%= f.simple_fields_for :etats_civil do |etat_civil|%>
+          <%= render 'etats_civil_field', :f => etat_civil %>
+          <% end %>
+          <div class="links">
+
+          </div>
+
+          <li class="">
+            <%= link_to 'Employeur', '#employeurs', data: {toggle: 'tab'} %>
+          </li>
+          <div class="tab-pane" id="employeurs" role="tabpanel">
+            <%= f.simple_fields_for :employeur do |employeur|%>
+            <%= render 'employeurs_field', :f => employeur %>
+            <% end %>
+            <div class="links">
+
+            </div>
+
+            <li class="">
+              <%= link_to 'Institution', '#institution', data: {toggle: 'tab'} %>
+            </li>
+            <div class="tab-pane" id="institutions" role="tabpanel">
+              <%= f.simple_fields_for :institution do |institution|%>
+              <%= render 'institutions_field', :f => institution %>
+              <% end %>
+              <div class="links">
+  
+              </div>
+    </div>
+  <div class="actions">
+    <%= f.button :submit, :disable_with => 'Please wait ...' %>
+  </div>
+<% end %>

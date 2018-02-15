@@ -1,12 +1,32 @@
 class ClientsController < ApplicationController
   #GET/clients
   #GET/clients.xml
+
+  def index
+    @clients = Client.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml{render :xml => @clients}
+    end
+  end
+
+  def show
+      @client = Client.find(params[:id])
+      respond_to do |format|
+        format.html #show.html.erb
+        format.xml { render :xml =>@client}
+    end
+
   def new
     @client = Client.new
     respond_to |format|
       format.html #new.html.erb
       format.xml { render :xml => @client}
     end
+  end
+
+  def edit
+    @client=Client.find(params[:id])
   end
 
   def create
@@ -35,10 +55,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  def edit
-    @client=Client.find(params[:id])
-  end
-
   def destroy
     @client = Client.find(params[ :id])
     @client.destroy
@@ -48,28 +64,14 @@ class ClientsController < ApplicationController
     end
   end
 
-  def index
-    @clients = Client.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml{render :xml => @clients}
-    end
-  end
-
-  def show
-    @client = Client.find(params[:id])
-    respond_to do |format|
-      format.html #show.html.erb
-      format.xml { render :xml =>@client}
-  end
   private
   def client_params
-    params.require(:client).permit(:Prenom, :Nom, :DateNaissance, :NAS, :Adresse_id, :NombreEnfants, :CompteTaxesProprietaire
+    params.require(:client).permit(:Prenom, :Nom, :DateNaissance, :NAS, :Adresse_id, :NombreEnfants, :CompteTaxesProprietaire,
     enfants_attributes: [:id, :_destroy, :Nom, :Prenom, :DateNaissance],
     etatscivils_attributes: [:id, :type, :_destroy],
     employeurs_attributes: [:id, :Nom, :_destroy],
-    adresses_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province]
-    etudes_attributes: [:id, :_destroy, :SecteurEtudes, :Niveau, :DateDebut, :DateCompletion, :Clients_id, :Institutions_id]
+    adresses_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province],
+    etudes_attributes: [:id, :_destroy, :SecteurEtudes, :Niveau, :DateDebut, :DateCompletion, :Clients_id, :Institutions_id],
     institutions_attributes: [:id, :_destroy, :Nom, :Adresse_id])
   end
 end

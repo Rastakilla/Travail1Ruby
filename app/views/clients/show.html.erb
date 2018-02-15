@@ -1,2 +1,16 @@
-<h1>Clients#show</h1>
-<p>Find me in app/views/clients/show.html.erb</p>
+<table class="table">
+  <tr>
+    <td>Name</td>
+    <td>
+      <%= @client.Nom %>
+    </td>
+  </tr>
+  <tr>
+  </tr>
+</table><h3>Clients
+</h3>
+<p>
+  List all the client here
+
+</p>
+<%= link_to 'Edit', edit_client_path(@client) %> | <%= link_to 'Back', clients_path %>
