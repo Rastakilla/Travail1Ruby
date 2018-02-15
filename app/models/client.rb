@@ -4,6 +4,7 @@ class Client < ApplicationRecord
   has_many :clients_has_enfant
   has_many :clients_etats_civil
   has_many :clients_has_employeur
+  has_many :clients_has_conjoint
   has_many :employeur, :through => :clients_has_employeur
   has_many :etats_civil, :through => :clients_etats_civil
   has_many :enfant, :through => :clients_has_enfant

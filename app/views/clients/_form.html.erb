@@ -29,7 +29,7 @@
       <div class="links">
 
       </div>
-
+    </div>
       <li class="">
         <%= link_to 'Etude', '#etudes', data: {toggle: 'tab'} %>
       </li>
@@ -40,7 +40,7 @@
         <div class="links">
 
         </div>
-
+      </div>
         <li class="">
           <%= link_to 'Etat Civil', '#etats_civils', data: {toggle: 'tab'} %>
         </li>
@@ -51,7 +51,7 @@
           <div class="links">
 
           </div>
-
+        </div>
           <li class="">
             <%= link_to 'Employeur', '#employeurs', data: {toggle: 'tab'} %>
           </li>
@@ -62,7 +62,7 @@
             <div class="links">
 
             </div>
-
+          </div>
             <li class="">
               <%= link_to 'Institution', '#institution', data: {toggle: 'tab'} %>
             </li>
@@ -71,9 +71,20 @@
               <%= render 'institutions_field', :f => institution %>
               <% end %>
               <div class="links">
-  
+
               </div>
-    </div>
+            </div>
+              <li class="">
+                <%= link_to 'Conjoint', '#conjoints', data: {toggle: 'tab'} %>
+              </li>
+              <div class="tab-pane" id="conjoints" role="tabpanel">
+                <%= f.simple_fields_for :client do |client|%>
+                <%= render 'conjoint_field', :f => client %>
+                <% end %>
+                <div class="links">
+
+                </div>
+              </div>
   <div class="actions">
     <%= f.button :submit, :disable_with => 'Please wait ...' %>
   </div>
