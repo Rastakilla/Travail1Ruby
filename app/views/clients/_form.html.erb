@@ -24,7 +24,7 @@
       <%= link_to 'Employeur', '#employeurs', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Institution', '#institution', data: {toggle: 'tab'} %>
+      <%= link_to 'Institution', '#institutions', data: {toggle: 'tab'} %>
     </li>
     <li class="">
       <%= link_to 'Conjoint', '#conjoints', data: {toggle: 'tab'} %>
@@ -32,19 +32,19 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane" id="adresses" role="tabpanel">
-      <%= f.simple_fields_for :adress do |adress|%>
-      <%= render 'adress_field', :f => adress %>
+      <%= f.simple_fields_for :adresses do |adresses|%>
+      <%= render 'adress_field', :f => adresses %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add adress', f, :adress %>
+
       </div>
     </div>
     <div class="tab-pane" id="enfants" role="tabpanel">
       <%= f.simple_fields_for :enfant do |enfant|%>
-      <%= render 'enfant_field', :f => enfant %>
+      <%= render 'enfant_fields', :f => enfant %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add enfant', f, :tasks %>
+        <%= link_to_add_association 'add enfant', f, :enfant %>
       </div>
     </div>
     <div class="tab-pane" id="etudes" role="tabpanel">
@@ -52,23 +52,22 @@
       <%= render 'etude_field', :f => etude %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add etude', f, :tasks %>
       </div>
     </div>
     <div class="tab-pane" id="etats_civils" role="tabpanel">
       <%= f.simple_fields_for :etats_civil do |etat_civil|%>
-      <%= render 'etats_civil_field', :f => etat_civil %>
+      <%= render 'etats_civil_fields', :f => etat_civil %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add etats_civil', f, :tasks %>
+        <%= link_to_add_association 'add etats_civil', f, :etats_civil %>
       </div>
     </div>
     <div class="tab-pane" id="employeurs" role="tabpanel">
       <%= f.simple_fields_for :employeur do |employeur|%>
-      <%= render 'employeurs_field', :f => employeur %>
+      <%= render 'employeur_fields', :f => employeur %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add employeur', f, :tasks %>
+        <%= link_to_add_association 'add employeur', f, :employeur %>
       </div>
     </div>
     <div class="tab-pane" id="institutions" role="tabpanel">
@@ -76,16 +75,15 @@
       <%= render 'institutions_field', :f => institution %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add institution', f, :tasks %>
+        <%= link_to_add_association 'add institution', f, :institution %>
       </div>
     </div>
-
     <div class="tab-pane" id="conjoints" role="tabpanel">
       <%= f.simple_fields_for :client do |client|%>
       <%= render 'conjoint_field', :f => client %>
       <% end %>
       <div class="links">
-          <%= link_to_add_association 'add client', f, :tasks %>
+          <%= link_to_add_association 'add client', f, :client %>
       </div>
     </div>
   </div>

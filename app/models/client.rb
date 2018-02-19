@@ -1,20 +1,26 @@
 class Client < ApplicationRecord
-  has_many :adress
-  has_many :etude
-  has_many :clients_has_enfant
-  has_many :clients_etats_civil
-  has_many :clients_has_employeur
-  has_many :clients_has_conjoint
-  has_many :employeur, :through => :clients_has_employeur
-  has_many :etats_civil, :through => :clients_etats_civil
-  has_many :enfant, :through => :clients_has_enfant
-  has_many :institution, :through => :etude
-  has_many :client, :through => :clients_has_conjoint
-  accepts_nested_attributes_for :client, :allow_destroy => true
-  accepts_nested_attributes_for :enfant, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :etats_civil, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :employeur, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :adress, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :etude, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :institution, :reject_if => :all_blank, :allow_destroy => true
+  belongs_to :adresses
+
+  has_many :adresses
+  has_many :etudes, :through => :institutions
+  has_many :institutions
+
+
+  has_many :clients_has_enfants, :dependent => :destroy
+  has_many :enfants, :through => :clients_has_enfants
+
+  has_many :clients_has_conjoints, :dependent => :destroy
+  has_many :clients, :through => :clients_has_conjoints
+
+  has_many :clients_etats_civils, :dependent => :destroy
+    has_many :etats_civils, :through => :clients_etats_civils
+
+  has_many :clients_has_employeurs, :dependent => :destroy
+  has_many :employeurs, :through => :clients_has_employeurs
+
+  accepts_nested_attributes_for :clients_has_enfants, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :clients_etats_civils, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :clients_has_employeurs, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :adresses, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :etudes, :reject_if => :all_blank, :allow_destroy => true
 end
