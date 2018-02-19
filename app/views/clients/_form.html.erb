@@ -6,84 +6,72 @@
   <%= f.input :Adresses_id, :hint => '' %>
   <%= f.input :NombreEnfants, :hint => '' %>
   <%= f.input :CompteTaxesProprietaire, :hint => '' %>
-
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
-      <%= link_to 'Adresse', '#adresses', data: {toggle: 'tab'} %>
+      <%= link_to 'Adresse  ', '#adresses', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Enfant', '#enfants', data: {toggle: 'tab'} %>
+      <%= link_to 'Enfant ', '#enfants', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Etude', '#etudes', data: {toggle: 'tab'} %>
+      <%= link_to 'Etude  ', '#etudes', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Etat Civil', '#etats_civils', data: {toggle: 'tab'} %>
+      <%= link_to 'Etat Civil ', '#etats_civils', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Employeur', '#employeurs', data: {toggle: 'tab'} %>
+      <%= link_to 'Employeur  ', '#employeurs', data: {toggle: 'tab'} %>
     </li>
     <li class="">
-      <%= link_to 'Institution', '#institutions', data: {toggle: 'tab'} %>
-    </li>
-    <li class="">
-      <%= link_to 'Conjoint', '#conjoints', data: {toggle: 'tab'} %>
+      <%= link_to 'Conjoint ', '#conjoints', data: {toggle: 'tab'} %>
     </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane" id="adresses" role="tabpanel">
-      <%= f.simple_fields_for :adresses do |adresses|%>
-      <%= render 'adress_field', :f => adresses %>
+      <%= f.simple_fields_for :adress do |adress|%>
+      <%= render 'adress_fields', :f => adress %>
       <% end %>
       <div class="links">
-
+        <%= link_to_add_association 'add adress', f, :adress %>
       </div>
     </div>
     <div class="tab-pane" id="enfants" role="tabpanel">
-      <%= f.simple_fields_for :enfant do |enfant|%>
-      <%= render 'enfant_fields', :f => enfant %>
+      <%= f.simple_fields_for :enfants do |enfants|%>
+      <%= render 'enfant_fields', :f => enfants %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add enfant', f, :enfant %>
+        <%= link_to_add_association 'add enfants', f, :enfants %>
       </div>
     </div>
     <div class="tab-pane" id="etudes" role="tabpanel">
-      <%= f.simple_fields_for :etude do |etude|%>
-      <%= render 'etude_field', :f => etude %>
+      <%= f.simple_fields_for :etudes do |etudes|%>
+      <%= render 'etude_field', :f => etudes %>
       <% end %>
       <div class="links">
       </div>
     </div>
     <div class="tab-pane" id="etats_civils" role="tabpanel">
-      <%= f.simple_fields_for :etats_civil do |etat_civil|%>
-      <%= render 'etats_civil_fields', :f => etat_civil %>
+      <%= f.simple_fields_for :etats_civils do |etats_civils|%>
+      <%= render 'etats_civil_fields', :f => etats_civils %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add etats_civil', f, :etats_civil %>
+        <%= link_to_add_association 'add etats_civils', f, :etats_civils %>
       </div>
     </div>
     <div class="tab-pane" id="employeurs" role="tabpanel">
-      <%= f.simple_fields_for :employeur do |employeur|%>
-      <%= render 'employeur_fields', :f => employeur %>
+      <%= f.simple_fields_for :employeurs do |employeurs|%>
+      <%= render 'employeur_fields', :f => employeurs %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'add employeur', f, :employeur %>
-      </div>
-    </div>
-    <div class="tab-pane" id="institutions" role="tabpanel">
-      <%= f.simple_fields_for :institution do |institution|%>
-      <%= render 'institutions_field', :f => institution %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association 'add institution', f, :institution %>
+        <%= link_to_add_association 'add employeurs', f, :employeurs %>
       </div>
     </div>
     <div class="tab-pane" id="conjoints" role="tabpanel">
-      <%= f.simple_fields_for :client do |client|%>
-      <%= render 'conjoint_field', :f => client %>
+      <%= f.simple_fields_for :clients do |clients|%>
+      <%= render 'client_fields', :f => clients %>
       <% end %>
       <div class="links">
-          <%= link_to_add_association 'add client', f, :client %>
+          <%= link_to_add_association 'add clients', f, :clients %>
       </div>
     </div>
   </div>

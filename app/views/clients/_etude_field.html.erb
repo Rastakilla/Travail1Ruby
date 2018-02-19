@@ -5,5 +5,17 @@
   <%= f.input :DateCompletion %>
   <%= f.input :client_id %>
   <%= f.input :institution_id %>
-  <%= link_to_remove_association 'remove etude', f %>
+  <%= link_to_remove_association 'remove etudes', f %>
 </div>
+<%= simple_form_for Etude.new do |e| %>
+<li class="">
+  <%= link_to 'Institution', '#institutions', data: {toggle: 'tab'} %>
+</li>
+<div class="tab-pane" id="institutions" role="tabpanel">
+  <%= f.simple_fields_for :institutions do |institutions|%>
+  <%= render 'institutions_field', :f => institutions %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association 'add institutions', f, :institutions %>
+  </div>
+<% end %>
