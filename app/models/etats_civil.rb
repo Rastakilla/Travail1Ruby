@@ -1,3 +1,3 @@
 class EtatsCivil < ApplicationRecord
-  has_many :client, :through => :clients_etats_civil
+  has_many :clients, :through => :clients_etats_civils
 end

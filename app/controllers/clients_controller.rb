@@ -66,7 +66,7 @@ class ClientsController < ApplicationController
 
   private
   def client_params
-    params.require(:client).permit(:Prenom, :Nom, :DateNaissance, :NAS, :Adresse_id, :NombreEnfants, :CompteTaxesProprietaire,
+    params.require(:client).permit(:Prenom, :Nom, :DateNaissance, :NAS, :adress_id, :NombreEnfants, :CompteTaxesProprietaire,
     clients_has_enfants_attributes: [:Enfants_id, :Clients_id, :Lien],
     clients_etats_civils_attributes: [:Clients_id, :EtatsCivil_id, :DateDebut, :DateFin],
     clients_has_employeurs_attributes: [:Clients_id, :Employeurs_id, :DateDebut, :DateFin],
@@ -74,8 +74,8 @@ class ClientsController < ApplicationController
     enfants_attributes: [:id, :_destroy, :Nom, :Prenom, :DateNaissance],
     etatscivils_attributes: [:id, :type, :_destroy],
     employeurs_attributes: [:id, :Nom, :_destroy],
-    adresses_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province],
+    adress_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province],
     etudes_attributes: [:id, :_destroy, :SecteurEtudes, :Niveau, :DateDebut, :DateCompletion, :Clients_id, :Institutions_id],
-    institutions_attributes: [:id, :_destroy, :Nom, :Adresse_id])
+    institutions_attributes: [:id, :_destroy, :Nom, :Adress_id])
   end
 end

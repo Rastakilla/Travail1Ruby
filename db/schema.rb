@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180212224701) do
 
-  create_table "adresses", force: :cascade do |t|
+  create_table "adress", force: :cascade do |t|
     t.string "NumeroCivique"
     t.string "Rue"
     t.string "CodePostal"
@@ -25,50 +25,49 @@ ActiveRecord::Schema.define(version: 20180212224701) do
     t.string "Nom"
     t.datetime "DateNaissance"
     t.string "NAS"
-    t.integer "Adresses_id"
     t.integer "NombreEnfants"
     t.integer "CompteTaxesProprietaire"
+    t.integer "adress_id"
+    t.index ["adress_id"], name: "index_clients_on_adress_id"
   end
 
   create_table "clients_etats_civils", force: :cascade do |t|
-    t.integer "Clients_id_id"
-    t.integer "EtatCivil_id_id"
+    t.integer "Clients_id"
+    t.integer "etats_civils_id"
     t.datetime "DateDebut"
     t.datetime "DateFin"
-    t.index ["Clients_id_id"], name: "index_clients_etats_civils_on_Clients_id_id"
-    t.index ["EtatCivil_id_id"], name: "index_clients_etats_civils_on_EtatCivil_id_id"
+    t.index ["Clients_id"], name: "index_clients_etats_civils_on_Clients_id"
+    t.index ["etats_civils_id"], name: "index_clients_etats_civils_on_etats_civils_id"
   end
 
   create_table "clients_has_conjoints", force: :cascade do |t|
-    t.integer "Clients_id_id"
-    t.integer "Clients_Conjoint_id_id"
+    t.integer "clients_id"
     t.datetime "DateDebut"
     t.datetime "DateFin"
-    t.index ["Clients_Conjoint_id_id"], name: "index_clients_has_conjoints_on_Clients_Conjoint_id_id"
-    t.index ["Clients_id_id"], name: "index_clients_has_conjoints_on_Clients_id_id"
+    t.index ["clients_id"], name: "index_clients_has_conjoints_on_clients_id"
   end
 
   create_table "clients_has_employeurs", force: :cascade do |t|
-    t.integer "Clients_id_id"
-    t.integer "Employeurs_id_id"
+    t.integer "Clients_id"
+    t.integer "Employeurs_id"
     t.datetime "DateDebut"
     t.datetime "DateFin"
-    t.index ["Clients_id_id"], name: "index_clients_has_employeurs_on_Clients_id_id"
-    t.index ["Employeurs_id_id"], name: "index_clients_has_employeurs_on_Employeurs_id_id"
+    t.index ["Clients_id"], name: "index_clients_has_employeurs_on_Clients_id"
+    t.index ["Employeurs_id"], name: "index_clients_has_employeurs_on_Employeurs_id"
   end
 
   create_table "clients_has_enfants", force: :cascade do |t|
-    t.integer "Enfants_id_id"
-    t.integer "Clients_id_id"
+    t.integer "enfants_id"
+    t.integer "clients_id"
     t.integer "Lien"
-    t.index ["Clients_id_id"], name: "index_clients_has_enfants_on_Clients_id_id"
-    t.index ["Enfants_id_id"], name: "index_clients_has_enfants_on_Enfants_id_id"
+    t.index ["clients_id"], name: "index_clients_has_enfants_on_clients_id"
+    t.index ["enfants_id"], name: "index_clients_has_enfants_on_enfants_id"
   end
 
   create_table "employeurs", force: :cascade do |t|
     t.string "Nom"
-    t.integer "Adresses_id_id"
-    t.index ["Adresses_id_id"], name: "index_employeurs_on_Adresses_id_id"
+    t.integer "adress_id"
+    t.index ["adress_id"], name: "index_employeurs_on_adress_id"
   end
 
   create_table "enfants", force: :cascade do |t|
@@ -86,91 +85,18 @@ ActiveRecord::Schema.define(version: 20180212224701) do
     t.string "Niveau"
     t.datetime "DateDebut"
     t.datetime "DateCompletion"
-    t.integer "Clients_id_id"
-    t.integer "Institutions_id_id"
-    t.index ["Clients_id_id"], name: "index_etudes_on_Clients_id_id"
-    t.index ["Institutions_id_id"], name: "index_etudes_on_Institutions_id_id"
+    t.integer "clients_id"
+    t.integer "Institutions_id"
+    t.index ["Institutions_id"], name: "index_etudes_on_Institutions_id"
+    t.index ["clients_id"], name: "index_etudes_on_clients_id"
   end
 
   create_table "institutions", force: :cascade do |t|
     t.string "Nom"
-    t.integer "Adresses_id_id"
-    t.index ["Adresses_id_id"], name: "index_institutions_on_Adresses_id_id"
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "role"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_people_on_project_id"
-  end
-
-  create_table "project_tags", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_tags_on_project_id"
-    t.index ["tag_id"], name: "index_project_tags_on_tag_id"
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_projects_on_owner_id"
-  end
-
-  create_table "sub_tasks", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.boolean "done"
-    t.integer "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_sub_tasks_on_task_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.boolean "done"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.integer "etude_id"
+    t.integer "adress_id"
+    t.index ["adress_id"], name: "index_institutions_on_adress_id"
+    t.index ["etude_id"], name: "index_institutions_on_etude_id"
   end
 
 end

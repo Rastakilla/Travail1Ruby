@@ -1,4 +1,4 @@
 class Enfant < ApplicationRecord
-  has_many :client, :through => :clients_has_enfant
-  accepts_nested_attributes_for :client, :allow_destroy => true
+  has_many :clients, :through => :clients_has_enfants
+  accepts_nested_attributes_for :clients, :allow_destroy => true
 end

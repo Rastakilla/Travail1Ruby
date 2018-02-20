@@ -5,9 +5,8 @@ class CreateEtudes < ActiveRecord::Migration[5.1]
       t.string :Niveau
       t.datetime :DateDebut
       t.datetime :DateCompletion
-      t.references :clients_id, foreign_key: true
-      t.references :client_id, foreign_key: true
-      t.references :Institutions_id, foreign_key: true
+      t.references :clients, foreign_key: true
+      t.references :Institutions, foreign_key: true
     end
   end
 end
