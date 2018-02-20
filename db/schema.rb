@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(version: 20180212224701) do
     t.string "Niveau"
     t.datetime "DateDebut"
     t.datetime "DateCompletion"
-    t.integer "clients_id"
+    t.integer "client_id"
     t.integer "Institutions_id"
     t.index ["Institutions_id"], name: "index_etudes_on_Institutions_id"
-    t.index ["clients_id"], name: "index_etudes_on_clients_id"
+    t.index ["client_id"], name: "index_etudes_on_client_id"
   end
 
   create_table "institutions", force: :cascade do |t|

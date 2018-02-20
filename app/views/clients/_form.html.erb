@@ -25,6 +25,9 @@
     <li class="">
       <%= link_to 'Conjoint ', '#conjoints', data: {toggle: 'tab'} %>
     </li>
+    <li class="">
+      <%= link_to 'Institution', '#institutions', data: {toggle: 'tab'} %>
+    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane" id="adresses" role="tabpanel">
@@ -45,9 +48,10 @@
     </div>
     <div class="tab-pane" id="etudes" role="tabpanel">
       <%= f.simple_fields_for :etudes do |etudes|%>
-      <%= render 'etude_field', :f => etudes %>
+      <%= render 'etude_fields', :f => etudes %>
       <% end %>
       <div class="links">
+        <%= link_to_add_association 'add etudes', f, :etudes %>
       </div>
     </div>
     <div class="tab-pane" id="etats_civils" role="tabpanel">
@@ -72,6 +76,14 @@
       <% end %>
       <div class="links">
           <%= link_to_add_association 'add clients', f, :clients %>
+      </div>
+    </div>
+    <div class="tab-pane" id="institutions" role="tabpanel">
+      <%= f.simple_fields_for :institutions do |institutions|%>
+      <%= render 'institution_fields', :f => institutions %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'add institutions', f, :institutions %>
       </div>
     </div>
   </div>

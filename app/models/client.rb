@@ -1,13 +1,14 @@
 class Client < ApplicationRecord
   belongs_to :adress
 
-  has_many :etudes
-
   has_many :clients_has_enfants, :dependent => :destroy
   has_many :enfants, :through => :clients_has_enfants
 
   has_many :clients_has_conjoints, :dependent => :destroy
   has_many :clients, :through => :clients_has_conjoints
+
+  has_many :etudes, :dependent => :destroy
+  has_many :institutions, :through => :etudes
 
   has_many :clients_etats_civils, :dependent => :destroy
   has_many :etats_civils, :through => :clients_etats_civils
@@ -24,5 +25,5 @@ class Client < ApplicationRecord
   accepts_nested_attributes_for :adress, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :etudes, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :employeurs, :reject_if => :all_blank, :allow_destroy => true
-  #accepts_nested_attributes_for :institutions, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :institutions, :reject_if => :all_blank, :allow_destroy => true
 end
