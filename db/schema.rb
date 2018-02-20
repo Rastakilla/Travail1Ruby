@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180212224701) do
 
-  create_table "adress", force: :cascade do |t|
+  create_table "adresses", force: :cascade do |t|
     t.string "NumeroCivique"
     t.string "Rue"
     t.string "CodePostal"

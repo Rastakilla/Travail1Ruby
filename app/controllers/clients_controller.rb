@@ -74,7 +74,7 @@ class ClientsController < ApplicationController
     enfants_attributes: [:id, :_destroy, :Nom, :Prenom, :DateNaissance],
     etatscivils_attributes: [:id, :type, :_destroy],
     employeurs_attributes: [:id, :Nom, :_destroy],
-    adress_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province],
+    adresses_attributes: [:id, :_destroy, :NumeroCivique, :Rue, :CodePostal, :Ville, :Province],
     etudes_attributes: [:id, :_destroy, :SecteurEtudes, :Niveau, :DateDebut, :DateCompletion, :Clients_id, :Institutions_id],
     institutions_attributes: [:id, :_destroy, :Nom, :Adress_id])
   end
